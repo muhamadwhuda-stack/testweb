@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Sejarah Kemerdekaan Indonesia</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: Arial, sans-serif;
+      background: #fdfdfd;
+      overflow-x: hidden;
+    }
+    .timeline-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .hidden {
+      opacity: 0;
+      transform: translateY(50px);
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+    }
+    .active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      position: relative;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #e63946;
+    }
+    p {
+      max-width: 600px;
+      line-height: 1.6;
+      margin: 10px auto;
+    }
+    button {
+      margin: 20px 10px 0;
+      padding: 10px 20px;
+      border: none;
+      background: #457b9d;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #1d3557;
+    }
+    blockquote {
+      font-style: italic;
+      background: #f1faee;
+      padding: 20px;
+      border-left: 5px solid #e63946;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="timeline-container active" id="step1">
+    <h1>1908 - Kebangkitan Nasional</h1>
+    <p>Organisasi Boedi Oetomo lahir sebagai tanda kebangkitan kesadaran bangsa.</p>
+    <p>Untuk pertama kalinya, bangsa Indonesia bersatu dalam semangat memperjuangkan pendidikan dan persatuan.</p>
+    <button onclick="nextStep(2)">Next</button>
+  </div>
+
+  <div class="timeline-container hidden" id="step2">
+    <h1>1928 - Sumpah Pemuda</h1>
+    <p>Para pemuda dari berbagai daerah berkumpul dalam Kongres Pemuda II.</p>
+    <p>Mereka mengikrarkan: Satu Nusa, Satu Bangsa, dan Satu Bahasa - Indonesia.</p>
+    <button onclick="prevStep(1)">Prev</button>
+    <button onclick="nextStep(3)">Next</button>
+  </div>
+
+  <div class="timeline-container hidden" id="step3">
+    <h1>1942 - Pendudukan Jepang</h1>
+    <p>Pada masa ini, Belanda menyerah kepada Jepang. Rakyat Indonesia mengalami penderitaan besar.</p>
+    <p>Namun, Jepang juga membuka peluang bagi bangsa Indonesia untuk berorganisasi dan mempersiapkan kemerdekaan.</p>
+    <button onclick="prevStep(2)">Prev</button>
+    <button onclick="nextStep(4)">Next</button>
+  </div>
+
+  <div class="timeline-container hidden" id="step4">
+    <h1>17 Agustus 1945 - Proklamasi</h1>
+    <p>Pada pagi hari, di Jalan Pegangsaan Timur No. 56 Jakarta, Ir. Soekarno didampingi Drs. Mohammad Hatta membacakan teks proklamasi.</p>
+    <blockquote>
+      Kami bangsa Indonesia dengan ini menyatakan kemerdekaan Indonesia.<br><br>
+      Hal-hal yang mengenai pemindahan kekuasaan dan lain-lain diselenggarakan dengan cara yang seksama dan dalam tempo yang sesingkat-singkatnya.<br><br>
+      Jakarta, 17 Agustus 1945<br>
+      Atas nama bangsa Indonesia<br>
+      Soekarno - Hatta
+    </blockquote>
+    <audio controls>
+      <source src="proklamasi.mp3" type="audio/mpeg">
+      Browser Anda tidak mendukung audio.
+    </audio>
+    <button onclick="prevStep(3)">Prev</button>
+  </div>
+
+  <script>
+    function nextStep(step) {
+      document.querySelectorAll(".timeline-container").forEach(div => {
+        div.classList.add("hidden");
+        div.classList.remove("active");
+      });
+      document.getElementById("step"+step).classList.remove("hidden");
+      document.getElementById("step"+step).classList.add("active");
+    }
+    function prevStep(step) {
+      nextStep(step);
+    }
+  </script>
+
+</body>
+</html>
